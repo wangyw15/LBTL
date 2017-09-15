@@ -9,7 +9,7 @@
                       GlowBrush="{DynamicResource AccentColorBrush}" Icon="LBTLIcon.ico">
 
     <Grid>
-        <TabControl HorizontalAlignment="Left" Height="369" VerticalAlignment="Top" Width="792">
+        <TabControl x:Name="MainTabControl" HorizontalAlignment="Left" Height="369" VerticalAlignment="Top" Width="792">
             <TabItem Header="主页">
                 <Grid Background="Transparent">
                     <ListBox HorizontalAlignment="Left" Height="325" VerticalAlignment="Top" Width="170"/>

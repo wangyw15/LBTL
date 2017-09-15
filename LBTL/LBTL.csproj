@@ -107,5 +107,11 @@
   <ItemGroup>
     <Resource Include="LBTLIcon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KMCCC\KMCCC.Pro\KMCCC.Pro.csproj">
+      <Project>{4270e717-21ee-46cf-a55a-b8af33bbcb54}</Project>
+      <Name>KMCCC.Pro</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
