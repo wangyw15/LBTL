@@ -11,6 +11,11 @@ namespace LBTL.Global
     {
         public static void Initialize()
         {
+            launcherCoreInitialize();
+        }
+
+        private static void launcherCoreInitialize()
+        {
             Variable.Core = LauncherCore.Create();
         }
     }
