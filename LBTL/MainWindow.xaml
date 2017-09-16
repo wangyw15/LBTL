@@ -19,10 +19,23 @@
         <Grid x:Name="SettingGrid" Visibility="Visible">
             <Controls:MetroAnimatedTabControl Margin="0,47,0,0" Background="Transparent" >
                 <TabItem Header="玩家设置">
-                    <Grid Background="Transparent"/>
+                    <Grid Background="Transparent">
+                        <TextBlock HorizontalAlignment="Left" Margin="25,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="电子邮箱:" FontSize="26.667"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="78.333,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="26.667"><Run Text="密码:"/></TextBlock>
+                        <TextBlock HorizontalAlignment="Left" Margin="25,0,0,70" TextWrapping="Wrap" FontSize="26.667" VerticalAlignment="Bottom"><Run Text="玩家名称:"/></TextBlock>
+                        <TextBox x:Name="EmailTextBox" Height="33.867" Margin="143.087,23.623,368.913,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="22.667"/>
+                        <PasswordBox x:Name="PasswordTextBox" Height="33.867" Margin="143.087,80,368.913,0" VerticalAlignment="Top" FontSize="22.667"/>
+                        <TextBox x:Name="PlayerNameTextBox" Height="33.867" Margin="143.087,0,368.913,70" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="22.667"/>
+                        <CheckBox x:Name="OnlineModeCheckBox" Content="我有正版" HorizontalAlignment="Right" Margin="0,22.02,129.58,0" VerticalAlignment="Top" FontSize="26.667"/>
+                    </Grid>
                 </TabItem>
-                <TabItem Header="TabItem">
-                    <Grid Background="Transparent"/>
+                <TabItem Header="环境设置">
+                    <Grid Background="Transparent">
+                        <ComboBox Margin="143.086,111.083,195.914,106.916" IsReadOnly="True" d:LayoutOverrides="Height" FontSize="22.667"/>
+                        <Controls:NumericUpDown Margin="143.087,25,195.914,0" VerticalAlignment="Top" FontSize="22.667"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="25,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="最大内存:" FontSize="26.667"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="24.296,105,0,105.133" TextWrapping="Wrap" FontSize="26.667" d:LayoutOverrides="Height"><Run Text="Java位置:"/></TextBlock>
+                    </Grid>
                 </TabItem>
                 <BulletDecorator Height="100" Width="100"/>
             </Controls:MetroAnimatedTabControl>

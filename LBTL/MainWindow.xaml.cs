@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using KMCCC.Launcher;
+using LBTL.Global;
 using MahApps.Metro.Controls;
 
 namespace LBTL
@@ -31,6 +33,7 @@ namespace LBTL
         {
             MainGrid.Visibility = Visibility.Visible;
             SettingGrid.Visibility = Visibility.Hidden;
+            
         }
 
         private void SettingBackImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
