@@ -1,24 +1,20 @@
-﻿<Controls:MetroWindow x:Class="LBTL.MainWindow"
+﻿<Controls:MetroWindow
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="LBTL.MainWindow"
                       Title="LBTL"
-                      Height="400"
+                      Height="360"
                       Width="800"
                       ShowMaxRestoreButton="False"
                       GlowBrush="{DynamicResource AccentColorBrush}" Icon="LBTLIcon.ico">
 
-    <Grid>
-        <TabControl x:Name="MainTabControl" HorizontalAlignment="Left" Height="369" VerticalAlignment="Top" Width="792">
-            <TabItem Header="主页">
-                <Grid Background="Transparent">
-                    <ListBox HorizontalAlignment="Left" Height="325" VerticalAlignment="Top" Width="170"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="设置">
-                <Grid Background="Transparent"/>
-            </TabItem>
-        </TabControl>
-
+    <Grid x:Name="MainInterface" Background="LightBlue">
+        <Grid x:Name="MainGrid" Visibility="Visible" Background="Transparent">
+            <Controls:Tile x:Name="NameTile" Margin="10,10,0,0" Width="205" Height="100" VerticalAlignment="Top" d:LayoutOverrides="Height" Title="模式" FontSize="13.333" TitleFontSize="20" CountFontSize="25" Count="名字" HorizontalTitleAlignment="Right" HorizontalAlignment="Left"/>
+            <Controls:Tile x:Name="SettingTile" Margin="10,115,0,114" Width="100" Height="100" HorizontalAlignment="Left" Title="" FontSize="13.333" TitleFontSize="20" CountFontSize="25" Count="设置" HorizontalTitleAlignment="Right"/>
+            <Controls:Tile x:Name="LaunchTile" Margin="10,0,0,9" Width="205" Height="100" HorizontalAlignment="Left" Title="" FontSize="13.333" TitleFontSize="20" CountFontSize="25" Count="启动游戏" HorizontalTitleAlignment="Right" VerticalAlignment="Bottom" d:LayoutOverrides="Height"/>
+            <Controls:Tile x:Name="DownloadTile" Margin="115,115,0,114" Width="100" Height="100" Title="" FontSize="13.333" TitleFontSize="20" CountFontSize="25" Count="下载" HorizontalTitleAlignment="Right" HorizontalAlignment="Left"/>
+        </Grid>
     </Grid>
 </Controls:MetroWindow>
