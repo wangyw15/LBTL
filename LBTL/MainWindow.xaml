@@ -31,8 +31,8 @@
                 </TabItem>
                 <TabItem Header="环境设置">
                     <Grid Background="Transparent">
-                        <ComboBox Margin="143.086,111.083,195.914,106.916" IsReadOnly="True" d:LayoutOverrides="Height" FontSize="22.667"/>
-                        <Controls:NumericUpDown Margin="143.087,25,195.914,0" VerticalAlignment="Top" FontSize="22.667"/>
+                        <ComboBox x:Name="JavaPathComboBox" Margin="143.086,111.083,195.914,106.916" IsReadOnly="True" d:LayoutOverrides="Height" FontSize="22.667"/>
+                        <Controls:NumericUpDown x:Name="MaxMemoryNumericUpDown" Margin="143.087,25,195.914,0" VerticalAlignment="Top" FontSize="22.667"/>
                         <TextBlock HorizontalAlignment="Left" Margin="25,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="最大内存:" FontSize="26.667"/>
                         <TextBlock HorizontalAlignment="Left" Margin="24.296,105,0,105.133" TextWrapping="Wrap" FontSize="26.667" d:LayoutOverrides="Height"><Run Text="Java位置:"/></TextBlock>
                     </Grid>
