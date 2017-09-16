@@ -7,28 +7,29 @@
                       Height="360"
                       Width="800"
                       ShowMaxRestoreButton="False"
-                      GlowBrush="{DynamicResource AccentColorBrush}" Icon="LBTLIcon.ico">
+                      GlowBrush="{DynamicResource AccentColorBrush}" Icon="LBTLIcon.ico" MaxWidth="800" MaxHeight="360">
 
     <Grid x:Name="MainInterface" Background="LightBlue">
-        <Grid x:Name="MainGrid" Visibility="Visible" Background="Transparent">
+        <Grid x:Name="MainGrid" Visibility="Hidden" Background="Transparent">
             <Controls:Tile x:Name="NameTile" Margin="10,10,0,0" Width="205" Height="100" VerticalAlignment="Top" d:LayoutOverrides="Height" Title="模式" FontSize="13.333" TitleFontSize="20" CountFontSize="25" Count="名字" HorizontalTitleAlignment="Right" HorizontalAlignment="Left"/>
             <Controls:Tile x:Name="SettingTile" Margin="10,115,0,114" Width="100" Height="100" HorizontalAlignment="Left" Title="" FontSize="13.333" TitleFontSize="20" CountFontSize="25" Count="设置" HorizontalTitleAlignment="Right" Click="SettingTile_Click"/>
             <Controls:Tile x:Name="LaunchTile" Margin="10,0,0,9" Width="205" Height="100" HorizontalAlignment="Left" Title="" FontSize="13.333" TitleFontSize="20" CountFontSize="25" Count="启动游戏" HorizontalTitleAlignment="Right" VerticalAlignment="Bottom" d:LayoutOverrides="Height"/>
             <Controls:Tile x:Name="DownloadTile" Margin="115,115,0,114" Width="100" Height="100" Title="" FontSize="13.333" TitleFontSize="20" CountFontSize="25" Count="下载" HorizontalTitleAlignment="Right" HorizontalAlignment="Left"/>
         </Grid>
-        <Grid x:Name="SettingGrid" Visibility="Hidden">
-            <Controls:MetroTabControl Margin="0,47,0,0" Background="Transparent" >
-                <TabItem Header="TabItem">
+        <Grid x:Name="SettingGrid" Visibility="Visible">
+            <Controls:MetroAnimatedTabControl Margin="0,47,0,0" Background="Transparent" >
+                <TabItem Header="玩家设置">
                     <Grid Background="Transparent"/>
                 </TabItem>
                 <TabItem Header="TabItem">
                     <Grid Background="Transparent"/>
                 </TabItem>
-            </Controls:MetroTabControl>
+                <BulletDecorator Height="100" Width="100"/>
+            </Controls:MetroAnimatedTabControl>
             <Image x:Name="SettingBackImage" HorizontalAlignment="Left" Height="32" Margin="10,10,0,0" VerticalAlignment="Top" Width="32" Source="Back.png" ToolTip="返回到主界面" MouseLeftButtonDown="SettingBackImage_MouseLeftButtonDown"/>
             <TextBlock HorizontalAlignment="Left" Margin="47,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="50.147" FontSize="25" Text="设置"/>
 
         </Grid>
-        <Grid x:Name="DownloadGrid"></Grid>
+        <Grid x:Name="DownloadGrid" Visibility="Hidden"></Grid>
     </Grid>
 </Controls:MetroWindow>
