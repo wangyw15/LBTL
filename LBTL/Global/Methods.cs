@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using KMCCC.Authentication;
 using KMCCC.Launcher;
 using LBTL.Api;
 using Microsoft.Win32;
@@ -21,6 +23,7 @@ namespace LBTL.Global
         private static void launcherCoreInitialize()
         {
             Variable.Core = LauncherCore.Create();
+            Variable.Core.JavaPath = DataBaseStorage.GetSettingValue("JavaPath");
         }
 
         private static void fileInitialize()
@@ -35,12 +38,42 @@ namespace LBTL.Global
                 DataBaseStorage.InsertSetting("Email", "example@example.com");
                 DataBaseStorage.InsertSetting("Password", "");
                 DataBaseStorage.InsertSetting("JavaPath", FromBMCL.GetJavaDir() ?? "null");
+                try
+                {
+                    DataBaseStorage.InsertSetting("Version", Variable.Core.GetVersions().ToArray()[0].Id);
+                }
+                catch
+                {
+                    DataBaseStorage.InsertSetting("Version", "null");
+                }
             }
         }
 
-        public static void LaunchGame()
+        public static void LaunchGame(bool onlineMode, string playerName, string email, string password, KMCCC.Launcher.Version version, int maxMemory)
         {
-            
+            IAuthenticator auth = null;
+            if (onlineMode)
+            {
+                auth = new YggdrasilLogin(email, password, false);
+            }
+            else
+            {
+                auth = new OfflineAuthenticator(playerName);
+            }
+
+            var option = new LaunchOptions()
+            {
+                Version = version,
+                VersionType = "LBTL",
+                Authenticator = auth,
+                MaxMemory = maxMemory,
+                Mode = LaunchMode.BmclMode
+            };
+            var result = Variable.Core.Launch(option);
+            if (!result.Success)
+            {
+                MessageBox.Show(result.ErrorMessage);
+            }
         }
     }
 

@@ -33,6 +33,7 @@ namespace LBTL
         public string Email { get; set; }
         public string Password { get; set; }
         public string PlayerName { get; set; }
+        public KMCCC.Launcher.Version[] Versions { get; set; }
 
         public MainWindow()
         {
@@ -58,18 +59,23 @@ namespace LBTL
                 switchToOffline();
                 PlayerName = DataBaseStorage.GetSettingValue("Player");
             }
+            Versions = Variable.Core.GetVersions().ToArray();
         }
 
         private void gridInitialize()
         {
             MainGrid.Visibility = Visibility.Visible;
             SettingGrid.Visibility = Visibility.Hidden;
+            DownloadGrid.Visibility = Visibility.Hidden;
+            SelectVersionGrid.Visibility = Visibility.Hidden;
         }
 
         private void controlInitialize()
         {
             SettingGrid.DataContext = this;
             PasswordTextBox.Password = Password;
+            SelectVersionGrid.DataContext = this;
+            VersionListBox.SelectedValue = DataBaseStorage.GetSettingValue("Version");
         }
 
         private void SettingBackImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -141,11 +147,42 @@ namespace LBTL
             DataBaseStorage.InsertSetting("Email", EmailTextBox.Text);
             DataBaseStorage.InsertSetting("Password", PasswordTextBox.Password);
             DataBaseStorage.InsertSetting("JavaPath", JavaPathTextBox.Text);
+            Variable.Core.JavaPath = JavaPath;
         }
 
         private void LaunchTile_Click(object sender, RoutedEventArgs e)
         {
+            Methods.LaunchGame(OnlineMode, PlayerName, Email, Password, Variable.Core.GetVersion(DataBaseStorage.GetSettingValue("Version")), MaxMemory);
+        }
 
+        private void SelectVersionTile_Click(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Visibility = Visibility.Hidden;
+            SelectVersionGrid.Visibility = Visibility.Visible;
+        }
+
+        private void SelectVersionBackImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MainGrid.Visibility = Visibility.Visible;
+            SelectVersionGrid.Visibility = Visibility.Hidden;
+        }
+
+        private void DownloadBackImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MainGrid.Visibility = Visibility.Visible;
+            DownloadGrid.Visibility = Visibility.Hidden;
+        }
+
+        private void DownloadTile_Click(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Visibility = Visibility.Hidden;
+            DownloadGrid.Visibility = Visibility.Visible;
+        }
+
+        private void SelectVersionButton_Click(object sender, RoutedEventArgs e)
+        {
+            DataBaseStorage.InsertSetting("Version", ((KMCCC.Launcher.Version)VersionListBox.SelectedItem).Id);
+            MessageBox.Show(VersionListBox.SelectedItem.ToString());
         }
     }
 }
