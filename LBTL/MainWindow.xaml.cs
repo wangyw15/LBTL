@@ -18,6 +18,7 @@ using KMCCC.Tools;
 using LBTL.Api;
 using LBTL.Global;
 using MahApps.Metro.Controls;
+using Microsoft.Win32;
 
 namespace LBTL
 {
@@ -46,7 +47,7 @@ namespace LBTL
             OnlineMode = bool.Parse(DataBaseStorage.GetSettingValue("OnlineMode"));
             MaxMemory = int.Parse(DataBaseStorage.GetSettingValue("MaxMemory"));
             JavaPath = DataBaseStorage.GetSettingValue("JavaPath");
-            if ((bool)OnlineModeCheckBox.IsChecked)
+            if (OnlineMode)
             {
                 switchToOnline();
                 Email = DataBaseStorage.GetSettingValue("Email");
@@ -111,6 +112,40 @@ namespace LBTL
             PasswordTextBox.Background = new SolidColorBrush(Color.FromArgb(255, 169, 169, 169));
             PlayerNameTextBox.IsEnabled = true;
             PlayerNameTextBox.Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+        }
+
+        private void AutoSelectJavaButton_Click(object sender, RoutedEventArgs e)
+        {
+            JavaPathTextBox.Text = FromBMCL.GetJavaDir() ?? "null";
+        }
+
+        private void SelectJavaButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Filter = "javaw.exe|javaw.exe";
+            dialog.Title = "选择 javaw.exe 文件";
+            dialog.RestoreDirectory = true;
+            dialog.Multiselect = false;
+            dialog.FileName = "javaw.exe";
+            if ((bool) dialog.ShowDialog())
+            {
+                JavaPathTextBox.Text = dialog.FileName;
+            }
+        }
+
+        private void SaveSettingButton_Click(object sender, RoutedEventArgs e)
+        {
+            DataBaseStorage.InsertSetting("MaxMemory", MaxMemoryNumericUpDown.Value.ToString());
+            DataBaseStorage.InsertSetting("OnlineMode", OnlineModeCheckBox.IsChecked.ToString());
+            DataBaseStorage.InsertSetting("Player", PlayerNameTextBox.Text);
+            DataBaseStorage.InsertSetting("Email", EmailTextBox.Text);
+            DataBaseStorage.InsertSetting("Password", PasswordTextBox.Password);
+            DataBaseStorage.InsertSetting("JavaPath", JavaPathTextBox.Text);
+        }
+
+        private void LaunchTile_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

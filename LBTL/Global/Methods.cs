@@ -37,6 +37,11 @@ namespace LBTL.Global
                 DataBaseStorage.InsertSetting("JavaPath", FromBMCL.GetJavaDir() ?? "null");
             }
         }
+
+        public static void LaunchGame()
+        {
+            
+        }
     }
 
     public static class FromBMCL
