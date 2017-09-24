@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -75,7 +76,8 @@ namespace LBTL
             SettingGrid.DataContext = this;
             PasswordTextBox.Password = Password;
             SelectVersionGrid.DataContext = this;
-            VersionListBox.SelectedValue = DataBaseStorage.GetSettingValue("Version");
+            VersionListBox.SelectedValue = Variable.Core.GetVersion(DataBaseStorage.GetSettingValue("Version"));
+            MessageBox.Show(PasswordTextBox.Password);
         }
 
         private void SettingBackImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -182,7 +184,6 @@ namespace LBTL
         private void SelectVersionButton_Click(object sender, RoutedEventArgs e)
         {
             DataBaseStorage.InsertSetting("Version", ((KMCCC.Launcher.Version)VersionListBox.SelectedItem).Id);
-            MessageBox.Show(VersionListBox.SelectedItem.ToString());
         }
     }
 }
