@@ -77,7 +77,6 @@ namespace LBTL
             PasswordTextBox.Password = Password;
             SelectVersionGrid.DataContext = this;
             VersionListBox.SelectedValue = Variable.Core.GetVersion(DataBaseStorage.GetSettingValue("Version"));
-            MessageBox.Show(PasswordTextBox.Password);
         }
 
         private void SettingBackImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
