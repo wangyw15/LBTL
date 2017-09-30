@@ -79,11 +79,10 @@
             <TextBlock x:Name="SaveSettingsSuccessTip" HorizontalAlignment="Right" Margin="0,12.873,111,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="保存成功" FontWeight="Bold" Opacity="0"/>
 
         </Grid>
-        <Grid x:Name="DownloadGrid" Visibility="Hidden">
+        <Grid x:Name="DownloadGrid" Visibility="Visible">
             <Image x:Name="DownloadBackImage" HorizontalAlignment="Left" Height="32" Margin="10,10,0,0" VerticalAlignment="Top" Width="32" Source="Back.png" ToolTip="返回到主界面" MouseLeftButtonDown="DownloadBackImage_MouseLeftButtonDown" />
-            <TextBlock Text="尚未实现" Margin="100,100,0,0" FontSize="20"/>
         </Grid>
-        <Grid x:Name="SelectVersionGrid" Visibility="Visible">
+        <Grid x:Name="SelectVersionGrid" Visibility="Hidden">
             <Image x:Name="SelectVersionBackImage" HorizontalAlignment="Left" Height="32" Margin="10,10,0,0" VerticalAlignment="Top" Width="32" Source="Back.png" ToolTip="返回到主界面" MouseLeftButtonDown="SelectVersionBackImage_MouseLeftButtonDown"/>
             <ListBox ItemsSource="{Binding Versions}" DisplayMemberPath="Id" x:Name="VersionListBox" HorizontalAlignment="Left" Margin="10,47,0,10" Width="200" Background="#FF7BC3DA"/>
             <Button x:Name="SelectVersionButton" Content="确定" HorizontalAlignment="Left" Margin="215,0,0,10" VerticalAlignment="Bottom" Width="75" Click="SelectVersionButton_Click"/>
