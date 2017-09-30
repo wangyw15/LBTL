@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,7 +24,7 @@ namespace LBTL.Global
         private static void launcherCoreInitialize()
         {
             Variable.Core = LauncherCore.Create();
-            Variable.Core.JavaPath = DataBaseStorage.GetSettingValue("JavaPath");
+            //Variable.Core.JavaPath = DataBaseStorage.GetSettingValue("JavaPath");
         }
 
         private static void fileInitialize()
@@ -74,6 +75,30 @@ namespace LBTL.Global
             {
                 MessageBox.Show(result.ErrorMessage);
             }
+        }
+
+        public static string Encrypt(string text, string key)
+        {
+            var aes = new AesCryptoServiceProvider();
+            var textBytes = Encoding.Unicode.GetBytes(text);
+            var keyBytes = Encoding.Unicode.GetBytes(key);
+            var ms = new MemoryStream();
+            var cs = new CryptoStream(ms, aes.CreateEncryptor(keyBytes, keyBytes), CryptoStreamMode.Write);
+            cs.Write(textBytes, 0, textBytes.Length);
+            cs.FlushFinalBlock();
+            return Convert.ToBase64String(ms.ToArray());
+        }
+
+        public static string Decrypt(string text, string key)
+        {
+            var aes = new AesCryptoServiceProvider();
+            var textBytes = Convert.FromBase64String(text);
+            var keyBytes = Encoding.Unicode.GetBytes(key);
+            var ms = new MemoryStream();
+            var cs = new CryptoStream(ms, aes.CreateDecryptor(keyBytes, keyBytes), CryptoStreamMode.Write);
+            cs.Write(textBytes, 0, textBytes.Length);
+            cs.FlushFinalBlock();
+            return Encoding.Unicode.GetString(ms.ToArray());
         }
     }
 

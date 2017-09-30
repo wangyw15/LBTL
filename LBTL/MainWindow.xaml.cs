@@ -48,7 +48,14 @@ namespace LBTL
         {
             OnlineMode = bool.Parse(DataBaseStorage.GetSettingValue("OnlineMode"));
             MaxMemory = int.Parse(DataBaseStorage.GetSettingValue("MaxMemory"));
-            JavaPath = DataBaseStorage.GetSettingValue("JavaPath");
+            try
+            {
+                JavaPath = DataBaseStorage.GetSettingValue("JavaPath");
+            }
+            catch
+            {
+                JavaPath = Variable.Core.JavaPath ?? "null";
+            }
             if (OnlineMode)
             {
                 switchToOnline();
@@ -146,7 +153,7 @@ namespace LBTL
             DataBaseStorage.InsertSetting("OnlineMode", OnlineModeCheckBox.IsChecked.ToString());
             DataBaseStorage.InsertSetting("Player", PlayerNameTextBox.Text);
             DataBaseStorage.InsertSetting("Email", EmailTextBox.Text);
-            DataBaseStorage.InsertSetting("Password", PasswordTextBox.Password);
+            DataBaseStorage.InsertSetting("Password", Methods.Encrypt(PasswordTextBox.Password, Variable.Key));
             DataBaseStorage.InsertSetting("JavaPath", JavaPathTextBox.Text);
             Variable.Core.JavaPath = JavaPath;
         }

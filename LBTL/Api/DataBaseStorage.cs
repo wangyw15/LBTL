@@ -9,7 +9,7 @@ namespace LBTL.Api
 {
     public static class DataBaseStorage
     {
-        private static LiteDatabase db = new LiteDatabase("Filename=LBTL\\LBTL.db; Password=b5fb1fcb-1c74-48d9-be52-cd2200c59882; Journal=false");
+        private static LiteDatabase db = new LiteDatabase(@"LBTL\LBTL.db");
         private static LiteCollection<Pair> settingPage = db.GetCollection<Pair>("settings");
 
         public static void InsertSetting(string key, string value)
